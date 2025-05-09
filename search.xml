@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>百度收录 Cloudflare Page 显示 308 报错</title>
+      <link href="/posts/e2e81a90.html"/>
+      <url>/posts/e2e81a90.html</url>
+      
+        <content type="html"><![CDATA[<div class="note blue no-icon flat"><p>由于博客文章是托管在Giuhub上的，用Cloudflare Page代理，最近在百度收录网站时，频繁遇到308问题或者访问不上问题，起初以为是Cloudflare 外网问题，后来查找多方资料后才明白：Cloudflare Page 会将 <code>.html 文件请求</code> 重定向到 <code>去掉 .html 后缀的地址</code> 。导致百度收录网站时显示网页 308 跳转。</p></div><h1 id="问题的根源"><a href="#问题的根源" class="headerlink" title="问题的根源"></a>问题的根源</h1><div class="note red no-icon flat"><p>Cloudflare Page 会将 <code>.html 文件请求</code> 重定向到 <code>去掉 .html 后缀的地址</code> 。导致百度收录网站时显示网页 308 跳转。也就是跳转到的最终网址是<code>https://geekland.top/xxx</code>,而不是<code>https://geekland.top/xxx.html</code>,这明显不符合百度的收录要求。</p></div><h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><div class="note purple no-icon flat"><p>解决方法就是再文件上后缀再加<code>.html</code>,Cloudflare Page 重定向后就会显示 一层 <code>.html</code>。如 Cloudflare Page 文件链接为 <code>https://geekland.top/xxx.html.html</code>。这样访问后重定向后就会显示 <code>https://geekland.top/xxx.html</code>。符合百度验证的要求。</p></div><h1 id="后续问题"><a href="#后续问题" class="headerlink" title="后续问题"></a>后续问题</h1><div class="note purple no-icon flat"><p>如果之前hexo没有配置skip_render，那么经过上面修改文件名之后，大概率还是有问题的，这是因为hexo会把<code>.html.html</code>重新编译，如果您打开public文件夹下的html文件，对比百度下载下来的文件，就会发现不同，这个时候我们需要做的是不让hexo去编译html文件，就需要到hexo的配置文件中的skip_render配置项配置为：<code>skip_render: &#39;*.html.html&#39;</code>，最终重新编译上传就可以了</p></div>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>杂记1</title>
       <link href="/posts/e2f41d03.html"/>
       <url>/posts/e2f41d03.html</url>
